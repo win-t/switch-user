@@ -2,7 +2,7 @@
 
 Switch uid,gid and groups before execute a program, of course you need to be root to do this.
 
-The reason I create this tool because there is no tool to change uid, gid, and groups to arbitary number. `su` and `sudo` need user to be create before.
+The reason I create this tool because there is no tool to change uid, gid, and groups to arbitary number. `su` and `sudo` need user to be created before.
 
 ## Synopsis
 
