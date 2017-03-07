@@ -1,9 +1,14 @@
-PROGS = swuser
-all: $(PROGS)
+all: swuser swuser_static
 
-%: %.c
-	$(CC) $(CFLAGS) -o $@ $<
+swuser: main.c
+	gcc -Os -o $@ $<
+	strip -s $@
+
+swuser_static: main.c
+	gcc -Os -fdata-sections -ffunction-sections -Wl,--gc-sections -static -o $@ $<
+	strip -s $@
 
 clean:
-	rm -f $(PROGS)
+	rm -f swuser swuser_static
 
+.PHONY: all clean
