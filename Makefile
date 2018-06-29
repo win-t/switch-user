@@ -1,14 +1,11 @@
-all: swuser swuser_static
+all: swuser
 
-swuser: main.c
-	gcc -Os -o $@ $<
-	strip -s $@
-
-swuser_static: main.c
-	gcc -Os -fdata-sections -ffunction-sections -Wl,--gc-sections -static -o $@ $<
-	strip -s $@
+swuser: main.c Dockerfile.build
+	docker build --pull -t swuser_static_builder -f Dockerfile.build .
+	docker run --rm swuser_static_builder | tar x
+	docker rmi --no-prune swuser_static_builder
 
 clean:
-	rm -f swuser swuser_static
+	rm -f swuser
 
 .PHONY: all clean

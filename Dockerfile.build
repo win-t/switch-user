@@ -1,0 +1,12 @@
+FROM alpine
+
+RUN apk -U add alpine-sdk \
+ && mkdir /data
+
+WORKDIR /data
+
+COPY main.c /data
+RUN gcc -Os -fdata-sections -ffunction-sections -Wl,--gc-sections -static -o swuser main.c \
+ && strip -s swuser
+
+ENTRYPOINT ["/bin/tar", "c", "swuser"]
