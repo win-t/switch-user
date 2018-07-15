@@ -21,6 +21,10 @@ you can also use this program to add/drop some group temporary
 
     $ id
       uid=1000 gid=1000 groups=1000,10,100,150,1002
-    $ exec sudo -E swuser 1000,100,150,1002
+    $ exec sudo -E swuser 1000,100,150,1002 $SHELL
     $ id
       uid=1000 gid=1000 groups=1000,100,150,1002
+
+if you use predefined user (e.g. daemon)
+
+    # USER=daemon LOGNAME=daemon HOME=/tmp/daemon swuser $(id -u daemon),$(id -G daemon | tr ' ' ,) bash
