@@ -29,9 +29,9 @@ int main(int argc, char *argv[]) {
 
 	unsigned int list[LIST_MAX_SIZE], list_n = 0;
 	for(char *tok = strtok(argv[1], ","); tok; tok = strtok(NULL, ",")) {
+		if(list_n == LIST_MAX_SIZE) exit_error(__LINE__, "Too much number in the list");
 		char *rptr;
 		list[list_n++] = strtol(tok, &rptr, 0);
-		if(list_n > LIST_MAX_SIZE) exit_error(__LINE__, "Too much number in the list");
 		if(*tok == 0 || *rptr != 0) exit_error(__LINE__, "Cannot parse as list of integer");
 	}
 
