@@ -1,3 +1,5 @@
+#define _DEFAULT_SOURCE
+
 #include <errno.h>
 #include <grp.h>
 #include <stdio.h>
